@@ -1,33 +1,101 @@
-.App {
-  text-align: center;
+.App{
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.calculator{
+  position: relative;
+  background-color: black;
+  color: black;
+  width: 33.3vw;
+  height: 95.3vh;
+  margin-left:33.3vw;
+  font-size: 1em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.displayWrapper{
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+}
+
+.display{
+  position: relative;
+  left: 100px;
+  color: white;
+  /* background-color: aqua; */
+  text-align: end;
+  width: 80%;
+  height: auto;
+  font-size: 50px;
+}
+
+.clearButtWrapp{
+  display: flex;
+  flex-direction: row;
+  background-color: #ccc;
+  color: black;
+  width: 48.8vh;
+  height: 16vh;
+  border:2px solid black;
+}
+
+.clearButt{
+  width: 100%;
+  font-size: 3em;
+}
+
+
+.operatorWrapp{
+  position: relative;
+  left:49.3vh;
+  bottom:16.4vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 90vh;
+  width: 20%;
+}
+
+
+
+.digitWrapp{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 500px;
+  height: 10vh;
+  /* background-color: ghostwhite; */
+  color: black;
+}
+
+
+.operator{
+  background-color: red;
   color: white;
+  border: solid 2px black;
 }
 
-.App-link {
-  color: #61dafb;
+.digits{
+  position: relative;
+  bottom: 90vh;
+  background-color: whitesmoke;
+  color:black;
+  border: solid 2px black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.but{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 16vh;
+  height: 16vh;
+}
+
+.centButValue{
+  font-size: 3em;
+  font-weight: 700;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
 }
