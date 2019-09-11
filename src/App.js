@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -25,37 +24,41 @@ const ClearButt = () => {
 
 
 
-class Operators extends React.Component {
+const Operators = (props)=> {
 
-  render(){
+
+
     return(
       <div className="operatorWrapp">
         <div className="operator but">
-          <div className="centButValue">+</div>
+          <button className="centButValue" onClick = {() => props.theHandler('+')}>+</button>
         </div>
 
         <div className="operator but">
-          <div className="centButValue">/</div>
+          <button className="centButValue" onClick = {() => props.theHandler('/')}>/</button>
         </div>
 
         <div className="operator but">
-          <div className="centButValue">*</div>
+          <button className="centButValue" onClick = {() => props.theHandler("*")}>*</button>
         </div>
 
         <div className="operator but">
-          <div className="centButValue">-</div>
+          <button className="centButValue" onClick = {() => props.theHandler("-")}>-</button>
         </div>
 
         <div className="operator but">
-          <div className="centButValue">=</div>
+          <button className="centButValue" onClick = {() => props.theHandler("=")}>=</button>
         </div>
       </div>
   )
-  }
+  
 }
 
 
-const Digits = () => {
+const Digits = (props) => {
+
+
+
   return(
     <div className="digitWrapp">
 
@@ -105,19 +108,38 @@ const Digits = () => {
 
 
 
-
 class Calculator extends React.Component {
   state = {
+    sum:[],
+    clearKey: false,
     value: 0
+  }
+
+  operatorHandler = (param) => {
+    console.log(param)
+    let sumArr = this.state.sum
+    if(param !== '='){
+      sumArr.push(param)
+      this.setState({sum: sumArr})
+    }
+
+  }
+
+  digitHandler = () => {
+    console.log('digit Handler')
+  }
+
+  clearKeyHandler = () => {
+    console.log('clear key handler')
   }
 
   render(){
     return(
       <div className="calculator">
-        <Display/>
-        <ClearButt/>
-        <Operators/>
-        <Digits/>
+        <Display value={this.state.value}/>
+        <ClearButt clearKey={this.state.clearKey} theHandler={this.clearKeyHandler}/>
+        <Operators sum={this.state.sum} theHandler={this.operatorHandler}/>
+        <Digits sum={this.state.sum} theHandler={this.digitHandler}/>
       </div>
     )
   }

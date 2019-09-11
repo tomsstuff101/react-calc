@@ -70,7 +70,7 @@
 
 .operator{
   background-color: red;
-  color: white;
+  /* color: white; */
   border: solid 2px black;
 }
 
