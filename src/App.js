@@ -4,19 +4,19 @@ import './App.css';
 
 
 
-const Display = ()=>{
+const Display = (props)=>{
   return(
     <div className="displayWrapper">
-      <h1 className="display">12345</h1>
+      <h1 className="display">{props.value}</h1>
     </div>
   )
 }
 
 
-const ClearButt = () => {
+const ClearButt = (props) => {
   return(
     <div className="clearButtWrapp">
-      <button className="clearButt">Clear</button>
+      <button className="clearButt" onClick = {() => props.theHandler('Clear')}>Clear</button>
     </div>
   )
 }
@@ -27,81 +27,38 @@ const ClearButt = () => {
 const Operators = (props)=> {
 
 
+  return(
+    <div className="operatorWrapp">
+      <div className="operator but" onClick = {() => props.theHandler('+')}>+</div>
+      <div className="operator but" onClick = {() => props.theHandler('/')}>/</div>
+      <div className="operator but" onClick = {() => props.theHandler("*")}>*</div>
+      <div className="operator but" onClick = {() => props.theHandler("-")}>-</div>
+      <div className="operator but" onClick = {() => props.theHandler("=")}>=</div>
+    </div>
+)
 
-    return(
-      <div className="operatorWrapp">
-        <div className="operator but">
-          <button className="centButValue" onClick = {() => props.theHandler('+')}>+</button>
-        </div>
 
-        <div className="operator but">
-          <button className="centButValue" onClick = {() => props.theHandler('/')}>/</button>
-        </div>
-
-        <div className="operator but">
-          <button className="centButValue" onClick = {() => props.theHandler("*")}>*</button>
-        </div>
-
-        <div className="operator but">
-          <button className="centButValue" onClick = {() => props.theHandler("-")}>-</button>
-        </div>
-
-        <div className="operator but">
-          <button className="centButValue" onClick = {() => props.theHandler("=")}>=</button>
-        </div>
-      </div>
-  )
   
 }
 
 
 const Digits = (props) => {
 
-
-
   return(
     <div className="digitWrapp">
 
-      <div className="digits but">
-        <div className="centButValue">0</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">1</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">2</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">3</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">4</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">5</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">6</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">7</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">8</div>
-      </div>
-
-      <div className="digits but">
-        <div className="centButValue">9</div>
-      </div>
-
+      <div className="digits but" onClick = {() => props.theHandler('0')}>0</div>
+      <div className="digits but" onClick = {() => props.theHandler('1')}>1</div>
+      <div className="digits but" onClick = {() => props.theHandler('2')}>2</div>
+      <div className="digits but" onClick = {() => props.theHandler('3')}>3</div>
+      <div className="digits but" onClick = {() => props.theHandler('4')}>4</div>
+      <div className="digits but" onClick = {() => props.theHandler('5')}>5</div>
+      <div className="digits but" onClick = {() => props.theHandler('6')}>6</div>
+      <div className="digits but" onClick = {() => props.theHandler('7')}>7</div>
+      <div className="digits but" onClick = {() => props.theHandler('8')}>8</div>
+      <div className="digits but" onClick = {() => props.theHandler('9')}>9</div>
+      <div className="digits but" onClick = {() => props.theHandler('.')}>.</div>
+      <div className="digits but" onClick = {() => props.theHandler('d')}>&laquo;</div>
     </div>
   )
 }
@@ -111,35 +68,42 @@ const Digits = (props) => {
 class Calculator extends React.Component {
   state = {
     sum:[],
-    clearKey: false,
     value: 0
   }
 
   operatorHandler = (param) => {
     console.log(param)
     let sumArr = this.state.sum
-    if(param !== '='){
+    if(param === '='){
+      console.log('calculate')
+      let result = eval(sumArr.join(""))
+      this.setState({value: result})
+      this.setState({sum: []})
+    } else if(param === "Clear"){
+      this.setState({value: 0})
+      this.setState({sum: []})
+    } else if(param === 'd'){
+      sumArr.pop()
+      let result = eval(sumArr.join(""))
+      this.setState({value: result})
+      this.setState({sum: sumArr})
+    }
+    else {
       sumArr.push(param)
       this.setState({sum: sumArr})
+      this.setState({value: (sumArr.join(""))})
     }
 
   }
 
-  digitHandler = () => {
-    console.log('digit Handler')
-  }
-
-  clearKeyHandler = () => {
-    console.log('clear key handler')
-  }
 
   render(){
     return(
       <div className="calculator">
         <Display value={this.state.value}/>
-        <ClearButt clearKey={this.state.clearKey} theHandler={this.clearKeyHandler}/>
-        <Operators sum={this.state.sum} theHandler={this.operatorHandler}/>
-        <Digits sum={this.state.sum} theHandler={this.digitHandler}/>
+        <ClearButt theHandler={this.operatorHandler}/>
+        <Operators theHandler={this.operatorHandler}/>
+        <Digits theHandler={this.operatorHandler}/>
       </div>
     )
   }
