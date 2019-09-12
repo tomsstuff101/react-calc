@@ -65,6 +65,11 @@ const Digits = (props) => {
 
 
 
+
+
+
+
+
 class Calculator extends React.Component {
   state = {
     sum:[],
@@ -72,29 +77,46 @@ class Calculator extends React.Component {
   }
 
   operatorHandler = (param) => {
-    console.log(param)
+    console.log(` oeratorHandler -->  ${param}`)
     let sumArr = this.state.sum
     if(param === '='){
       console.log('calculate')
       let result = eval(sumArr.join(""))
       this.setState({value: result})
       this.setState({sum: []})
+      console.log(`sumArr --> ${sumArr}`)
     } else if(param === "Clear"){
       this.setState({value: 0})
       this.setState({sum: []})
+      console.log(`sumArr --> ${sumArr}`)
     } else if(param === 'd'){
       sumArr.pop()
       let result = eval(sumArr.join(""))
       this.setState({value: result})
       this.setState({sum: sumArr})
+      console.log(`sumArr --> ${sumArr}`)
     }
     else {
+      console.log(`operator  -->  ${param}`)
       sumArr.push(param)
       this.setState({sum: sumArr})
       this.setState({value: (sumArr.join(""))})
+      console.log(`sumArr --> ${sumArr}`)
     }
 
   }
+
+
+  digitHandler = (param) => {
+    console.log(`digitHandler --> ${param}`)
+    let sumArr = this.state.sum
+    sumArr.push(param)
+    this.setState({sum: sumArr})
+    this.setState({value: (sumArr.join(""))})
+    console.log(`sumArr --> ${sumArr}`)
+    }
+
+  
 
 
   render(){
@@ -103,7 +125,7 @@ class Calculator extends React.Component {
         <Display value={this.state.value}/>
         <ClearButt theHandler={this.operatorHandler}/>
         <Operators theHandler={this.operatorHandler}/>
-        <Digits theHandler={this.operatorHandler}/>
+        <Digits theHandler={this.digitHandler}/>
       </div>
     )
   }
