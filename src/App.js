@@ -85,30 +85,32 @@ class Calculator extends React.Component {
       this.setState({value: result})
       this.setState({sum: []})
       console.log(`sumArr --> ${sumArr}`)
-    } else if(param === "Clear"){
+    }
+    else if(param === "Clear"){
       this.setState({value: 0})
       this.setState({sum: []})
       console.log(`sumArr --> ${sumArr}`)
-    } else if(param === 'd'){
-      sumArr.pop()
-      let result = eval(sumArr.join(""))
-      this.setState({value: result})
-      this.setState({sum: sumArr})
-      console.log(`sumArr --> ${sumArr}`)
-    }
+    } 
     else {
       console.log(`operator  -->  ${param}`)
       sumArr.push(param)
       this.setState({sum: sumArr})
       this.setState({value: (sumArr.join(""))})
       console.log(`sumArr --> ${sumArr}`)
-    }
-
   }
-
+  }
 
   digitHandler = (param) => {
     console.log(`digitHandler --> ${param}`)
+    if(param === 'd'){
+      let sumArr = this.state.sum
+      sumArr.pop()
+      let display = sumArr.join("")
+      this.setState({value: display})
+      this.setState({sum: sumArr})
+      console.log(`sumArr --> ${sumArr}`)
+    }
+    else {
     let sumArr = this.state.sum
     sumArr.push(param)
     this.setState({sum: sumArr})
@@ -116,7 +118,7 @@ class Calculator extends React.Component {
     console.log(`sumArr --> ${sumArr}`)
     }
 
-  
+  }
 
 
   render(){
