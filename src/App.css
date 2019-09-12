@@ -82,14 +82,14 @@
 
 .but{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 0;
   padding: 0;
-  /* padding: 5vh 5vh 5vh 5vh; */
+  text-align: center;
   width: 16vh;
   height: 16vh;
   font-size: 3em;
   font-weight: 700;
   border: solid 2px black;
-  
 }
