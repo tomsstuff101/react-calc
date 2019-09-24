@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This is the first React app created by the author, Tom Ormiston
 
-In the project directory, you can run:
+This has been [deployed on GitHub](https://tomsstuff101.github.io/react-calc/)
 
-### `npm start`
+<a href="https://tomsstuff101.github.io/react-calc/">
+<img src="https://github.com/tomsstuff101/react-calc/blob/master/README-Images/React%20Calc.png" >
+</a>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+To install locally from this repo ensure Node.js is installed; the version I used was
 
-### `npm test`
+$ node --version
+v610.6.3
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+And npm is up-to-date; the version I used was
 
-### `npm run build`
+$ npm --version
+6.9.0
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+To start
+$npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+This is a basic explanation using one example
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+----------
+digitHandler = (param) => {
+    console.log(`digitHandler --> ${param}`)
+    -
+    -  set the state
+    -
+    }
+----------
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ is passed into --->    
+``` 
+<Digits theHandler={this.digitHandler}/>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Hence when a button (lets say digit '4') is pressed ie 'onClick'
+----->
+```
+        const Digits = (props) => {
+        return(
+            -
+            <div className="digits but" onClick = {() => props.theHandler('4')}>4</div>
+            -
+            -
+          )
+        }
+```
+so onClick it passes via an anaonymous function '4' to the digitHandler 
+since (for digits) 'theHandler" is 'digitHandler'
 
-## Learn More
+There are many areas where this app could be improved upon.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+From creating an array of keys and applying the mapping function to produce the button functionality, to simplifying the CSS.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+However as a first attempt I was reasonably happy with the outcome.
