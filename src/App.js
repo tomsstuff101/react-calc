@@ -1,8 +1,16 @@
 import React from 'react';
 import './App.css';
 
+// there are no specific external components created for this app
 
 
+
+
+// There are 3 button components 
+// If refactoring the code, one could use a single handler
+// This would mean tat a map function could be used with an array of button
+// values to create the button components dynamically
+// This also would be DRY'r and less code size
 
 const Display = (props)=>{
   return(
@@ -22,11 +30,7 @@ const ClearButt = (props) => {
 }
 
 
-
-
 const Operators = (props)=> {
-
-
   return(
     <div className="operatorWrapp">
       <div className="operator but" onClick = {() => props.theHandler('+')}>+</div>
@@ -35,18 +39,13 @@ const Operators = (props)=> {
       <div className="operator but" onClick = {() => props.theHandler("-")}>-</div>
       <div className="operator but" onClick = {() => props.theHandler("=")}>=</div>
     </div>
-)
-
-
-  
+    )
 }
 
 
 const Digits = (props) => {
-
   return(
     <div className="digitWrapp">
-
       <div className="digits but" onClick = {() => props.theHandler('0')}>0</div>
       <div className="digits but" onClick = {() => props.theHandler('1')}>1</div>
       <div className="digits but" onClick = {() => props.theHandler('2')}>2</div>
@@ -65,16 +64,17 @@ const Digits = (props) => {
 
 
 
-
-
-
-
-
 class Calculator extends React.Component {
+
+
   state = {
-    sum:[],
-    value: 0
+    sum:[],     // an array to contain the ongoing calculation 
+    value: 0    // a value to be displayed
   }
+
+  // There are two handlers shown here.
+  // All buttons could share the same handler with a longer 
+  // if-else desision sequence 
 
   operatorHandler = (param) => {
     console.log(` oeratorHandler -->  ${param}`)
@@ -100,6 +100,8 @@ class Calculator extends React.Component {
   }
   }
 
+
+
   digitHandler = (param) => {
     console.log(`digitHandler --> ${param}`)
     if(param === 'd'){
@@ -120,7 +122,11 @@ class Calculator extends React.Component {
 
   }
 
-
+// During initial design the calculator was split into 4 components
+// This was loosly bsed on functionality and CSS.
+// With hindsight the CSS should have been less of a concern as all 
+// buttons could have been included in one overall wrapper and then 
+// style seperated according to a className object refernece or similar
   render(){
     return(
       <div className="calculator">
@@ -135,7 +141,7 @@ class Calculator extends React.Component {
 
 
 
-
+// Top level just contain the Calculator app itself
 class App extends React.Component {
   render(){
     return(
